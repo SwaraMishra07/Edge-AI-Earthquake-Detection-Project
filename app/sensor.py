@@ -39,11 +39,27 @@ class Sensor:
 
     def __init__(
         self,
-        sample_rate: int = 100,
+        sample_rate: int | dict | object = 100,
         duration_seconds: float = 2.0
     ):
-        self.sample_rate = sample_rate
+        self.sample_rate = self._resolve_sample_rate(sample_rate)
         self.duration_seconds = duration_seconds
+
+    def _resolve_sample_rate(self, sample_rate: int | dict | object) -> int:
+        """Resolve the configured sample rate from common config shapes."""
+        if isinstance(sample_rate, dict):
+            return int(
+                sample_rate.get("SENSOR_SAMPLE_RATE", sample_rate.get("sample_rate", 100))
+            )
+
+        if hasattr(sample_rate, "SENSOR_SAMPLE_RATE"):
+            return int(getattr(sample_rate, "SENSOR_SAMPLE_RATE"))
+
+        if hasattr(sample_rate, "sample_rate"):
+            return int(getattr(sample_rate, "sample_rate"))
+
+        return int(sample_rate)
+
     def read(self) -> np.ndarray:
         """Read current sensor values."""
         return self.read_data()
