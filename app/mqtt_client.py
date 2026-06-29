@@ -147,8 +147,7 @@ class MQTTClient:
         
         result = self.client.publish(topic, message, qos=qos, retain=retain)
         if result.rc != mqtt.MQTT_ERR_SUCCESS:
-            raise MQTTPublishError(f"Publish failed with code {result.rc}")
-        
+            logger.warning( f"Publish returned code {result.rc}" )
         return result.mid
 
 
