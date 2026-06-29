@@ -65,7 +65,7 @@ def create_sliding_window(
 
 def extract_features(
     window: np.ndarray
-) -> Tuple[np.ndarray, dict]:
+) -> np.ndarray:
     """Extract statistical features from waveform."""
 
     features = np.hstack([
@@ -87,4 +87,4 @@ def extract_features(
         f"energy={feature_dict['energy']:.4f}"
     )
 
-    return features, feature_dict
+    return features
