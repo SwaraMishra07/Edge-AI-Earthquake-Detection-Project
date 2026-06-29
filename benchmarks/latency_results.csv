@@ -1,0 +1,4 @@
+model_name,inference_latency_ms,preprocessing_time_ms,total_latency_ms,sample_size
+earthquake_model_v1,45.2,12.5,57.7,1000
+earthquake_model_v2,38.1,10.3,48.4,1000
+earthquake_model_quantized,22.5,8.1,30.6,1000

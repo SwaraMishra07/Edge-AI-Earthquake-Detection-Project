@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+numpy
+scipy
+paho-mqtt
+pydantic
+sqlalchemy
+alembic
+pytest
+httpx
+pypdf
+scikit-learn
+joblib
+tensorflow>=2.21.0

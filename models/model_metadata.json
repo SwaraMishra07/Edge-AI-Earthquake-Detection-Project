@@ -1,0 +1,29 @@
+{
+  "model_name": "earthquake_detector_v2",
+  "version": "2.0.0",
+  "model_type": "tflite",
+  "input_shape": [1, 512, 3],
+  "output_shape": [1, 2],
+  "framework": "tensorflow_lite",
+  "quantization": {
+    "enabled": true,
+    "type": "dynamic_range",
+    "post_training_quantization": true
+  },
+  "performance": {
+    "latency_ms": 30.6,
+    "accuracy": 0.968,
+    "precision": 0.954,
+    "recall": 0.941
+  },
+  "training_data": {
+    "dataset": "USGS Earthquake Dataset",
+    "samples": 10000,
+    "date": "2024-01-01"
+  },
+  "hardware_requirements": {
+    "min_ram_mb": 128,
+    "recommended_ram_mb": 256,
+    "supported_platforms": ["ARM", "x86", "x64"]
+  }
+}

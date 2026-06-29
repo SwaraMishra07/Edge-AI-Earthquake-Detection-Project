@@ -1,0 +1,47 @@
+{
+  "dashboard": {
+    "title": "Earthquake Detection System",
+    "panels": [
+      {
+        "title": "CPU Usage",
+        "targets": [
+          {
+            "expr": "node_cpu_usage"
+          }
+        ]
+      },
+      {
+        "title": "Memory Usage",
+        "targets": [
+          {
+            "expr": "node_memory_usage_percent"
+          }
+        ]
+      },
+      {
+        "title": "Active Alerts",
+        "targets": [
+          {
+            "expr": "active_alerts_total"
+          }
+        ]
+      },
+      {
+        "title": "Detection Latency",
+        "targets": [
+          {
+            "expr": "inference_latency_ms"
+          }
+        ]
+      },
+      {
+        "title": "Recent Events",
+        "targets": [
+          {
+            "expr": "earthquake_events_total"
+          }
+        ]
+      }
+    ]
+  }
+}

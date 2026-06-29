@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Edge"
+    given-names: "AI Team"
+title: "Edge AI Earthquake Detection System"
+version: 1.0.0
+date-released: 2024-01-01
+url: "https://github.com/edge-ai/earthquake-detection"
+license: MIT
+keywords:
+  - earthquake-detection
+  - edge-computing
+  - machine-learning
+  - tensorflow-lite
+  - seismic-monitoring

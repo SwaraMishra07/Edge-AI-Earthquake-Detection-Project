@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  mqtt:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./deployment/mqtt_broker.conf:/mosquitto/config/mosquitto.conf
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_logs:/mosquitto/log
+    networks:
+      - earthquake_network
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+      - "5000:5000"
+    environment:
+      - MQTT_BROKER=mqtt
+      - MQTT_PORT=1883
+      - MODEL_PATH=/app/models/earthquake_model.tflite
+    depends_on:
+      - mqtt
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+    networks:
+      - earthquake_network
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - earthquake_network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_storage:/var/lib/grafana
+    networks:
+      - earthquake_network
+
+volumes:
+  mosquitto_data:
+  mosquitto_logs:
+  grafana_storage:
+
+networks:
+  earthquake_network:
+    driver: bridge
