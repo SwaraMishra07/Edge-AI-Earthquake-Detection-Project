@@ -1,4 +1,14 @@
-\"\"\"Sensor data simulation and acquisition module.\n\nProvides realistic seismic sensor simulation for research and testing.\nIncludes configurable noise models and event generation patterns.\n\"\"\"\n\nimport logging\nimport numpy as np\nfrom typing import Optional\n\nlogger = logging.getLogger(__name__)
+"""Sensor data simulation and acquisition module.
+
+Provides realistic seismic sensor simulation for research and testing.
+Includes configurable noise models and event generation patterns.
+"""
+
+import logging
+import numpy as np
+from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 def simulate_sensor_data(sample_rate: int, duration_seconds: float = 2.0) -> np.ndarray:
     total_samples = int(sample_rate * duration_seconds)
