@@ -34,7 +34,7 @@ def handle_mqtt_errors(func: Callable) -> Callable:
     def wrapper(*args, **kwargs):
         try:
             return func(*args, **kwargs)
-        except mqtt.MQTTException as e:
+        except Exception as e:
             logger.error(f"MQTT error in {func.__name__}: {e}", exc_info=True)
             raise MQTTConnectionError(f"MQTT operation failed: {e}") from e
         except Exception as e:
