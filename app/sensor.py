@@ -44,6 +44,9 @@ class Sensor:
     ):
         self.sample_rate = sample_rate
         self.duration_seconds = duration_seconds
+    def read(self) -> np.ndarray:
+        """Read current sensor values."""
+        return self.read_data()
 
     def read_data(self) -> np.ndarray:
         """Read simulated sensor data."""
